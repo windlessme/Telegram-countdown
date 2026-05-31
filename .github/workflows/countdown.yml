@@ -1,25 +1,27 @@
 name: Update Telegram Countdown + Photo
 
 on:
-    schedule:
-        - cron: "0 16 * * *" # midnight UTC+8
-    workflow_dispatch:
+  schedule:
+    - cron: "0 16 * * *"
+  workflow_dispatch:
+
 jobs:
-    update:
-        runs-on: ubuntu-latest
+  update:
+    runs-on: ubuntu-latest
 
-        steps:
-            - uses: actions/checkout@v4
+    steps:
+      - uses: actions/checkout@v4
 
-            - name: Install ImageMagick
-              run: sudo apt-get update && sudo apt-get install -y imagemagick
+      - name: Install ImageMagick
+        run: sudo apt-get update && sudo apt-get install -y imagemagick
 
-            - name: Run Countdown + Update
-              env:
-                  BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-                  CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-                  START_DATE: ${{ secrets.TELEGRAM_START_DATE }}
-                  TARGET_DATE: ${{ secrets.TELEGRAM_TARGET_DATE }}
-              run: |
-                  chmod +x ./convert-and-upload.sh
-                  ./convert-and-upload.sh
+      - name: Run Countdown + Update
+        env:
+          BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          START_DATE: "2026-06-01"
+          TARGET_DATE: "2026-07-08"
+          END_DATE: "2026-07-08"
+        run: |
+          chmod +x ./convert-and-upload.sh
+          ./convert-and-upload.sh
