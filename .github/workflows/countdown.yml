@@ -2,7 +2,7 @@ name: Update Telegram Countdown + Photo
 
 on:
   schedule:
-    - cron: "0 16 * * *"
+    - cron: "0 16 * * *" # 00:00 Asia/Taipei (UTC+8)
   workflow_dispatch:
 
 jobs:
@@ -22,6 +22,7 @@ jobs:
           START_DATE: "2026-06-01"
           TARGET_DATE: "2026-07-08"
           END_DATE: "2026-07-08"
+          TITLE_PREFIX: ${{ secrets.TELEGRAM_TITLE_PREFIX }}
         run: |
           chmod +x ./convert-and-upload.sh
           ./convert-and-upload.sh
