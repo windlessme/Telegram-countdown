@@ -1,4 +1,4 @@
-name: Update Telegram Countdown + Photo
+name: Update Telegram Countdown
 
 on:
   schedule:
@@ -12,10 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y imagemagick jq
-
-      - name: Run Countdown + Update
+      - name: Run Countdown Update
         env:
           BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -23,7 +20,6 @@ jobs:
           TARGET_DATE: "2026-07-08"
           END_DATE: "2026-07-08"
           TITLE_PREFIX: ${{ secrets.TELEGRAM_TITLE_PREFIX }}
-          USE_TELEGRAM_CHAT_PHOTO: ${{ vars.USE_TELEGRAM_CHAT_PHOTO }}
         run: |
           chmod +x ./convert-and-upload.sh
           ./convert-and-upload.sh
