@@ -123,7 +123,7 @@ else
     "$OUT"
 fi
 
-TITLE="${TITLE_PREFIX:-SITCON 2026 Countdown} | ${LEFT} days left"
+TITLE="${TITLE_PREFIX:-SITCON Camp 2026} | ${LEFT} days left"
 
 curl -fsS -X POST "https://api.telegram.org/bot$BOT_TOKEN/setChatTitle" \
   -d chat_id="$CHAT_ID" \
